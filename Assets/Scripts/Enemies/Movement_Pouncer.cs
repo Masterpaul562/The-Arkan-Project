@@ -77,4 +77,11 @@ public class Movement_Pouncer : MonoBehaviour
         readyToJump = false;
         Invoke(nameof(jumpCheck), Random.Range(2,5));
     }
+    void OnCollisionEnter(Collision collision) 
+    {
+if (collision.collider.tag == "Bullet" || collision.collider.tag == "Player") 
+{
+Destroy(this.gameObject);
+}
+    }
 }
