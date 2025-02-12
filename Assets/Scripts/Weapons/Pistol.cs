@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pistol : Weapon
 {
+    public GameObject bullet;
+    public Transform spawn;
     void Awake()
     {
         maxAmmo = 12;
@@ -11,10 +13,19 @@ public class Pistol : Weapon
     }
    protected override void Shoot()
     {
-        curentAmmo--;
+        
+        if (curentAmmo > 0 && curentAmmo>0)
+        {
+            var newBullet = Instantiate(bullet, spawn.position, spawn.rotation);
+            newBullet.GetComponent<Rigidbody>().freezeRotation = true;
+            newBullet.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * 30,ForceMode.Impulse);
+            curentAmmo = curentAmmo - 1;
+
+        }
+        
         if (curentAmmo<=0)
         {
-            Reload();
+            Invoke(nameof(Reload),3);
         }
     }
     protected override void Reload()
