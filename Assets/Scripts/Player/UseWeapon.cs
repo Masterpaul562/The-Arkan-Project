@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UseWeapon : MonoBehaviour
 {
-    private GameObject selected;
+    public GameObject selected;
     public GameObject pistol;
     public GameObject rifle; 
 
@@ -20,12 +20,38 @@ public class UseWeapon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            selected.SetActive(false);
             selected = pistol;
-        } else if (Input.GetKeyDown(KeyCode.Alpha2)) { selected = rifle; }
+            selected.SetActive(true);
+            selected.GetComponent<Pistol>().canFire = true;
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) 
+        {
+            selected.SetActive(false);
+            selected = rifle; 
+            selected.SetActive(true);
+            selected.GetComponent<Rifle>().canFire = true;
+        }
         if (selected.GetComponent<Weapon>() != null) {
-            if (Input.GetMouseButtonDown(0))
+            var getWeapon = selected.GetComponent<Weapon>(); 
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                selected.GetComponent<Weapon>().BaseShoot(); 
+              if (getWeapon.curentAmmo != getWeapon.maxAmmo)
+                {
+                    getWeapon.BaseReload();
+                }
+            }
+            if (selected == pistol)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    selected.GetComponent<Weapon>().BaseShoot();
+                }
+            } else if (selected = rifle)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    selected.GetComponent<Weapon>().BaseShoot();
+                }
             }
         }
     }
