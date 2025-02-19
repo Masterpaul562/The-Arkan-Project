@@ -8,6 +8,7 @@ TagManager:
   - Wood
   - Campfire
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
