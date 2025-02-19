@@ -11,8 +11,11 @@ public class Movement_Lobber : MonoBehaviour
     [SerializeField, Range(0,30)] private float bulletSpeed;
     [SerializeField, Range(0, 30)] private float moveSpeed;
     [SerializeField, Range(0, 30)] private float fireRate;
-    private bool canFire = true;
-
+    private bool canFire;
+ void Start() 
+ {
+    StartCoroutine(FireRateHandler());
+ }
     float? RotateSpawn()
     {
         float? angle = CalculateAngle(true);
@@ -78,5 +81,12 @@ public class Movement_Lobber : MonoBehaviour
         float timeToNextFire = 1 / fireRate;
         yield return new WaitForSeconds(timeToNextFire);
         canFire = true;
+    }
+    void OnCollisionEnter(Collision collision) 
+    {
+if (collision.collider.tag == "Bullet" || collision.collider.tag == "Player") 
+{
+Destroy(this.gameObject);
+}
     }
 }
