@@ -12,6 +12,7 @@ public class Movement_Lobber : MonoBehaviour
     [SerializeField, Range(0, 30)] private float moveSpeed;
     [SerializeField, Range(0, 30)] private float fireRate;
     private bool canFire;
+    private int health = 100;
  void Start() 
  {
     StartCoroutine(FireRateHandler());
@@ -53,6 +54,9 @@ public class Movement_Lobber : MonoBehaviour
     }
     void Update()
     {
+        if(health<= 0) {
+Destroy(this.gameObject);
+        }
         Vector3 direction = (target.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x,0,direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
@@ -68,7 +72,7 @@ public class Movement_Lobber : MonoBehaviour
         }
         else
         {
-            this.transform.Translate(0,0, Time.deltaTime* moveSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed* Time.deltaTime);
         }
     }
     private void Fire()
@@ -84,9 +88,9 @@ public class Movement_Lobber : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision) 
     {
-if (collision.collider.tag == "Bullet" || collision.collider.tag == "Player") 
+if (collision.collider.tag == "Bullet") 
 {
-Destroy(this.gameObject);
+health -= 50;
 }
     }
 }

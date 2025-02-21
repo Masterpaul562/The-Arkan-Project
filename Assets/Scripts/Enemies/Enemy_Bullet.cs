@@ -21,6 +21,9 @@ public class Enemy_Bullet : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if(collision.collider.tag == "Player"){
+             collision.gameObject.GetComponent<PlayerInventory>().TakeDamage(10);
+        }
     }
 
 }

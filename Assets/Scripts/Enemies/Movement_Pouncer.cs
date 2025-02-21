@@ -10,6 +10,7 @@ public class Movement_Pouncer : MonoBehaviour
     private bool readyToJump = true;
     int objMask = 1 << 11;
     int whatIsGround = 1<< 10;
+    private int health = 100;
     Rigidbody rb;
     
     void Awake()
@@ -21,6 +22,9 @@ public class Movement_Pouncer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
         grounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, whatIsGround);
        if (grounded)
         {
@@ -79,9 +83,12 @@ public class Movement_Pouncer : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision) 
     {
-if (collision.collider.tag == "Bullet" || collision.collider.tag == "Player") 
-{
-Destroy(this.gameObject);
+if (collision.collider.tag == "Player"){
+    collision.gameObject.GetComponent<PlayerInventory>().TakeDamage(10);
 }
+if(collision.collider.tag == "Bullet"){
+health -= 50;
+}
+
     }
 }
