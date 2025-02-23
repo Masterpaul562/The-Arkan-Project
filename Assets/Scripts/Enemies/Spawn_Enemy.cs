@@ -4,47 +4,65 @@ using UnityEngine;
 
 public class Spawn_Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject pouncer;
-    [SerializeField]
-    private GameObject lobber;
+
+    [SerializeField] private GameObject pouncer;
+    [SerializeField] private GameObject lobber;
     private GameObject selected; 
     [SerializeField]
     private Transform player;
-    [SerializeField, Range(0, 30)] private float spawnRate;
-    private bool shouldSpawn; 
-    private float time;  
-    void Start() {
-        StartCoroutine(spawnHandler());
+    [SerializeField] private GameObject door;
+    public bool shouldSpawn;
+    public int numOfEnemies = 0;
+    public int numOfMaxEnemies;
+    private Transform spawn1;
+    private Transform spawn2;
+    private Transform spawn3;
+
+    void Start()
+    {
+        spawn1 = transform.GetChild(0);
+        spawn2 = transform.GetChild(1);
+        spawn3 = transform.GetChild(2);
     }
+   
     void Update()
     {
- 
         if (shouldSpawn)
         {
-            
-            shouldSpawn = false;
-           int enemyNum = Random.Range(1,3);
-           if (enemyNum == 1){
-            selected = pouncer;
-           } else if (enemyNum == 2) {
-            selected = lobber;
-           } 
-            var newEnemy = Instantiate(selected, new Vector3(Random.Range(1,20), 1, Random.Range(1,20)), transform.rotation);
-            if (selected == pouncer){
-            newEnemy.AddComponent<Movement_Pouncer>();
-            newEnemy.GetComponent<Movement_Pouncer>().target = player;
-            } else if (selected == lobber) 
+            int offset = 0;
+            for (int i = 0; i <= numOfMaxEnemies; i++)
             {
-                newEnemy.GetComponent<Movement_Lobber>().target = player;
+
+                numOfEnemies++;
+                if (numOfEnemies <= 5)
+                {
+
+                    selected = pouncer;
+                    var newEnemy = Instantiate(selected, new Vector3(spawn1.position.x, spawn1.position.y, spawn1.position.z + offset), spawn1.rotation);
+                    newEnemy.GetComponent<Movement_Pouncer>().target = player;
+                }
+                else if (numOfEnemies >= 6 && numOfEnemies <= 10)
+                {
+
+                    var newEnemy = Instantiate(selected, new Vector3(spawn2.position.x, spawn2.position.y, spawn2.position.z + offset), spawn2.rotation);
+                    newEnemy.GetComponent<Movement_Pouncer>().target = player;
+                }
+                else if (numOfEnemies >= 7 && numOfEnemies <= 15)
+                {
+
+                    selected = lobber;
+                    var newEnemy = Instantiate(selected, new Vector3(spawn3.position.x + offset, spawn3.position.y, spawn3.position.z), spawn3.rotation);
+                    newEnemy.GetComponent<Movement_Lobber>().target = player;
+                }
+                offset++;
+                if (offset >= 5)
+                {
+                    offset = 0;
+                }
             }
-            StartCoroutine(spawnHandler());
+
         }
+        
     }
-    private IEnumerator spawnHandler()
-    {
-float timeToNextSpawn = spawnRate;
-yield return new WaitForSeconds(timeToNextSpawn);
-shouldSpawn = true; 
-    }
+
 }

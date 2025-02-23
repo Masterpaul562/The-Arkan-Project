@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: 
+  player: {fileID: 424032276607920592, guid: e1c3ea4238a25314ba485d9bca139757, type: 3}
 --- !u!1 &7959586885828873354
 GameObject:
   m_ObjectHideFlags: 0

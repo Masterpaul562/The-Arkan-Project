@@ -38,9 +38,11 @@ public class Movement_Pouncer : MonoBehaviour
         Vector3 directionToTarget = (target.position - transform.position).normalized;
         float distancetoTarget = Vector3.Distance(transform.position, target.position);
 
+        
 
-        if (!Physics.Raycast(transform.position, directionToTarget, distancetoTarget, objMask))
-        {
+            if (!Physics.Raycast(transform.position, directionToTarget, distancetoTarget, objMask))
+        { 
+            
             if (distance && readyToJump && grounded)
             {
                 Jump();

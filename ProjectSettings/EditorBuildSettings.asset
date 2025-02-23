@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FPWorld.unity
     guid: 41467dc1ea9ae6f4fa538cc7cce5027e
+  - enabled: 1
+    path: Assets/Scenes/Dungeon-Lab.unity
+    guid: 3b5e8547e40091342b0e8380b635c417
   m_configObjects: {}

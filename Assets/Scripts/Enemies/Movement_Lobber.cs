@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Movement_Lobber : MonoBehaviour
 {
+    Rigidbody rb;
     public Transform target;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletSpawn;
@@ -13,10 +14,14 @@ public class Movement_Lobber : MonoBehaviour
     [SerializeField, Range(0, 30)] private float fireRate;
     private bool canFire;
     private int health = 100;
- void Start() 
+    private int objMask = 1 << 11;
+
+    void Start() 
  {
     StartCoroutine(FireRateHandler());
- }
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+    }
     float? RotateSpawn()
     {
         float? angle = CalculateAngle(true);
@@ -54,25 +59,33 @@ public class Movement_Lobber : MonoBehaviour
     }
     void Update()
     {
-        if(health<= 0) {
+       
+        if (health<= 0) {
 Destroy(this.gameObject);
         }
         Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x,0,direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
-        float? angle = RotateSpawn();
-        if (angle != null)
+
+        Vector3 directionToTarget = (target.position - transform.position).normalized;
+        float distancetoTarget = Vector3.Distance(transform.position, target.position);
+        if (!Physics.Raycast(transform.position, directionToTarget, distancetoTarget, objMask))
         {
-            if (canFire)
+            Debug.Log("HELO");
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
+            float? angle = RotateSpawn();
+            if (angle != null)
             {
-                canFire = false;
-                Fire();
-                StartCoroutine(FireRateHandler());
+                if (canFire)
+                {
+                    canFire = false;
+                    Fire();
+                    StartCoroutine(FireRateHandler());
+                }
             }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed* Time.deltaTime);
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+            }
         }
     }
     private void Fire()

@@ -8,7 +8,7 @@ public class Wood : Interactable
     void Awake()
     {
         promptMessage = "Pick Up Wood";
-        player = GameObject.FindWithTag("Player");
+      
     }
     protected override void Interact()
     {
