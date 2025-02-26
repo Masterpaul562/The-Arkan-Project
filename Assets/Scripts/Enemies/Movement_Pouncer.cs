@@ -25,7 +25,6 @@ public class Movement_Pouncer : MonoBehaviour
     {
         if (health <= 0) {
             Destroy(this.gameObject);
-            spawner.GetComponent<Spawn_Enemy>().numOfEnemies -=1;
         }
         grounded = Physics.Raycast(transform.position, Vector3.down, 2 * 0.5f + 0.2f, whatIsGround);
        if (grounded)

@@ -28,6 +28,7 @@ public class Spawn_Enemy : MonoBehaviour
    
     void Update()
     {
+<<<<<<< HEAD
         if (numOfEnemies >= 14)
         {
             shouldSpawn = false;
@@ -38,6 +39,8 @@ public class Spawn_Enemy : MonoBehaviour
 
             doorControler.GetComponent<SpawnDoorControler>().roomComplete = true;
         }
+=======
+>>>>>>> parent of 7f03e75 (Hello)
         if (shouldSpawn)
         {
             int offset = 0;
@@ -51,14 +54,12 @@ public class Spawn_Enemy : MonoBehaviour
                     selected = pouncer;
                     var newEnemy = Instantiate(selected, new Vector3(spawn1.position.x, spawn1.position.y, spawn1.position.z + offset), spawn1.rotation);
                     newEnemy.GetComponent<Movement_Pouncer>().target = player;
-                    newEnemy.GetComponent<Movement_Pouncer>().spawner = this.gameObject;
                 }
                 else if (numOfEnemies >= 6 && numOfEnemies <= 10)
                 {
 
                     var newEnemy = Instantiate(selected, new Vector3(spawn2.position.x, spawn2.position.y, spawn2.position.z + offset), spawn2.rotation);
                     newEnemy.GetComponent<Movement_Pouncer>().target = player;
-                    newEnemy.GetComponent<Movement_Pouncer>().spawner = this.gameObject;
                 }
                 else if (numOfEnemies >= 7 && numOfEnemies <= 15)
                 {
@@ -66,7 +67,6 @@ public class Spawn_Enemy : MonoBehaviour
                     selected = lobber;
                     var newEnemy = Instantiate(selected, new Vector3(spawn3.position.x + offset, spawn3.position.y, spawn3.position.z), spawn3.rotation);
                     newEnemy.GetComponent<Movement_Lobber>().target = player;
-                    newEnemy.GetComponent<Movement_Lobber>().spawner = this.gameObject;
                 }
                 offset++;
                 if (offset >= 5)
@@ -74,7 +74,11 @@ public class Spawn_Enemy : MonoBehaviour
                     offset = 0;
                 }
             }
+<<<<<<< HEAD
             numOfEnemies --;
+=======
+
+>>>>>>> parent of 7f03e75 (Hello)
         }
         
     }
