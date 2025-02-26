@@ -15,6 +15,7 @@ public class Movement_Lobber : MonoBehaviour
     private bool canFire;
     private int health = 100;
     private int objMask = 1 << 11;
+    public GameObject spawner;
 
     void Start() 
  {
@@ -62,6 +63,7 @@ public class Movement_Lobber : MonoBehaviour
        
         if (health<= 0) {
 Destroy(this.gameObject);
+            spawner.GetComponent<Spawn_Enemy>().numOfEnemies -= 1;
         }
         Vector3 direction = (target.transform.position - transform.position).normalized;
 
@@ -69,7 +71,6 @@ Destroy(this.gameObject);
         float distancetoTarget = Vector3.Distance(transform.position, target.position);
         if (!Physics.Raycast(transform.position, directionToTarget, distancetoTarget, objMask))
         {
-            Debug.Log("HELO");
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
             float? angle = RotateSpawn();
