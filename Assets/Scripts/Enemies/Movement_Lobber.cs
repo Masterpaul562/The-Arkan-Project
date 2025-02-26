@@ -15,7 +15,6 @@ public class Movement_Lobber : MonoBehaviour
     private bool canFire;
     private int health = 100;
     private int objMask = 1 << 11;
-    public GameObject spawner;
 
     void Start() 
  {
@@ -65,11 +64,14 @@ public class Movement_Lobber : MonoBehaviour
 Destroy(this.gameObject);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             spawner.GetComponent<Spawn_Enemy>().numOfEnemies -= 1;
 =======
 >>>>>>> parent of 7f03e75 (Hello)
 =======
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+>>>>>>> parent of 51df72e (yay)
         }
         Vector3 direction = (target.transform.position - transform.position).normalized;
 
@@ -79,12 +81,16 @@ Destroy(this.gameObject);
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             Debug.Log("HELO");
 >>>>>>> parent of 7f03e75 (Hello)
 =======
             Debug.Log("HELO");
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+            Debug.Log("HELO");
+>>>>>>> parent of 51df72e (yay)
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
             float? angle = RotateSpawn();

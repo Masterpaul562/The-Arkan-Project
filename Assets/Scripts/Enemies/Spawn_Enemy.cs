@@ -10,14 +10,13 @@ public class Spawn_Enemy : MonoBehaviour
     private GameObject selected; 
     [SerializeField]
     private Transform player;
-    [SerializeField] private GameObject doorControler;
+    [SerializeField] private GameObject door;
     public bool shouldSpawn;
     public int numOfEnemies = 0;
     public int numOfMaxEnemies;
     private Transform spawn1;
     private Transform spawn2;
     private Transform spawn3;
-    
 
     void Start()
     {
@@ -28,6 +27,7 @@ public class Spawn_Enemy : MonoBehaviour
    
     void Update()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         if (numOfEnemies >= 14)
@@ -44,6 +44,8 @@ public class Spawn_Enemy : MonoBehaviour
 >>>>>>> parent of 7f03e75 (Hello)
 =======
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+>>>>>>> parent of 51df72e (yay)
         if (shouldSpawn)
         {
             int offset = 0;
@@ -79,12 +81,16 @@ public class Spawn_Enemy : MonoBehaviour
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             numOfEnemies --;
 =======
 =======
 >>>>>>> parent of 7f03e75 (Hello)
 
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+
+>>>>>>> parent of 51df72e (yay)
         }
         
     }

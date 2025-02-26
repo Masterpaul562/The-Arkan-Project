@@ -12,7 +12,6 @@ public class Movement_Pouncer : MonoBehaviour
     int whatIsGround = 1<< 10;
     private int health = 100;
     Rigidbody rb;
-    public GameObject spawner;
     
     void Awake()
     {

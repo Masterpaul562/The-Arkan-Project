@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class doorControler : MonoBehaviour
+public class DoorControler : MonoBehaviour
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     public GameObject spawnDoor;
@@ -13,6 +14,8 @@ public class doorControler : MonoBehaviour
 =======
 =======
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+>>>>>>> parent of 51df72e (yay)
     public int enemiesRemaining;
     private int playerMask = 1 << 8;
     public bool shouldOpen;
@@ -52,5 +55,8 @@ public class doorControler : MonoBehaviour
             animator.SetTrigger("Closed");
         }
     }
+<<<<<<< HEAD
 >>>>>>> parent of 7f03e75 (Hello)
+=======
+>>>>>>> parent of 51df72e (yay)
 }
