@@ -5,11 +5,14 @@ using UnityEngine;
 public class doorControler : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     public GameObject spawnDoor;
     public GameObject exitDoor1;
     public GameObject exitDoor2;
     public bool shouldOpenExit;
 =======
+=======
+>>>>>>> parent of 7f03e75 (Hello)
     public int enemiesRemaining;
     private int playerMask = 1 << 8;
     public bool shouldOpen;

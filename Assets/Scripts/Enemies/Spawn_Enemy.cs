@@ -29,6 +29,7 @@ public class Spawn_Enemy : MonoBehaviour
     void Update()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (numOfEnemies >= 14)
         {
             shouldSpawn = false;
@@ -39,6 +40,8 @@ public class Spawn_Enemy : MonoBehaviour
 
             doorControler.GetComponent<SpawnDoorControler>().roomComplete = true;
         }
+=======
+>>>>>>> parent of 7f03e75 (Hello)
 =======
 >>>>>>> parent of 7f03e75 (Hello)
         if (shouldSpawn)
@@ -75,8 +78,11 @@ public class Spawn_Enemy : MonoBehaviour
                 }
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
             numOfEnemies --;
 =======
+=======
+>>>>>>> parent of 7f03e75 (Hello)
 
 >>>>>>> parent of 7f03e75 (Hello)
         }
