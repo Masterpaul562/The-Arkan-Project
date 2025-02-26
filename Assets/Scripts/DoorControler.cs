@@ -8,4 +8,5 @@ public class doorControler : MonoBehaviour
     public GameObject exitDoor1;
     public GameObject exitDoor2;
     public bool shouldOpenExit;
+    public bool roomComplete=false;
 }

@@ -333,6 +333,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206344421}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &226173793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226173795}
+  - component: {fileID: 226173794}
+  m_Layer: 0
+  m_Name: DoorControler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &226173794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226173793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c298d1b60812da45b9c37994b47ca01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDoor: {fileID: 513317334}
+  exitDoor1: {fileID: 0}
+  exitDoor2: {fileID: 0}
+  shouldOpenExit: 0
+  roomComplete: 0
+--- !u!4 &226173795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226173793}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 513317338}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &238840571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +395,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2062064131}
+    - target: {fileID: 1114571597169095267, guid: 55bd4a83ece950240af423e1aa4a7c0e, type: 3}
+      propertyPath: doorControler
+      value: 
+      objectReference: {fileID: 226173793}
     - target: {fileID: 7247684512675854883, guid: 55bd4a83ece950240af423e1aa4a7c0e, type: 3}
       propertyPath: m_Name
       value: Enemy_Spawner
@@ -698,6 +752,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1345664091}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 270}
+--- !u!1 &513317334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4513554531941033300, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+  m_PrefabInstance: {fileID: 2087145046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &513317338 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+  m_PrefabInstance: {fileID: 2087145046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &671487814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 631049424848174562, guid: 3108afa4695ea7d41acd2a3359b098b3, type: 3}
@@ -2566,36 +2630,40 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 226173795}
     m_Modifications:
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: endPoint.x
-      value: -3
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: endPoint.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: endPoint.z
-      value: -46
+      value: -46.5
       objectReference: {fileID: 0}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 1512710991}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: startPoint.x
-      value: 3
+      value: -3
       objectReference: {fileID: 0}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: startPoint.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 350108348776473646, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: startPoint.z
-      value: -46
+      value: -46.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1774969927238561006, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
+      propertyPath: doorControler
+      value: 
+      objectReference: {fileID: 226173793}
     - target: {fileID: 4513554531941033300, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_Name
       value: SlidingDoor
@@ -2606,11 +2674,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.21
+      value: 4.210001
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -46.32
+      value: -46.320007
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2618,15 +2686,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4976640484402650213, guid: 282e93ed9fb06dd4da0d18cfac91ead2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2757,7 +2825,7 @@ SceneRoots:
   - {fileID: 271177927}
   - {fileID: 682798641}
   - {fileID: 1741195528}
-  - {fileID: 2087145046}
   - {fileID: 238840571}
   - {fileID: 2052823825}
   - {fileID: 1456677438}
+  - {fileID: 226173795}

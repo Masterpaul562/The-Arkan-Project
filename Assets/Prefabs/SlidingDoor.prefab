@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4976640484402650213}
   - component: {fileID: 7972299248199937437}
-  - component: {fileID: 350108348776473646}
   - component: {fileID: 5021722315768143417}
+  - component: {fileID: 1774969927238561006}
   m_Layer: 11
   m_Name: SlidingDoor
   m_TagString: Untagged
@@ -56,20 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.56, y: 7.72, z: 9.44}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &350108348776473646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4513554531941033300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c298d1b60812da45b9c37994b47ca01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesRemaining: 0
-  shouldOpen: 0
 --- !u!95 &5021722315768143417
 Animator:
   serializedVersion: 5
@@ -91,6 +77,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1774969927238561006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513554531941033300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3115e99ed5cd624088ebacfe241c7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldOpen: 0
+  enemySpawner: {fileID: 0}
+  doorControler: {fileID: 0}
+  startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &5958047748174687155
 GameObject:
   m_ObjectHideFlags: 0
