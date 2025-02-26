@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5021722315768143417}
   - component: {fileID: 1774969927238561006}
   m_Layer: 11
-  m_Name: SlidingDoor
+  m_Name: SpawnSlidingDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.56, y: 7.72, z: 9.44}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.56, y: 7.72, z: 4.89}
+  m_Center: {x: 0, y: 0, z: 1.47}
 --- !u!95 &5021722315768143417
 Animator:
   serializedVersion: 5
@@ -92,8 +92,8 @@ MonoBehaviour:
   shouldOpen: 0
   enemySpawner: {fileID: 0}
   doorControler: {fileID: 0}
-  startPoint: {x: 0, y: 0, z: 0}
-  endPoint: {x: 0, y: 0, z: 0}
+  startPoint: {x: -3, y: 1, z: -46.5}
+  endPoint: {x: 3, y: 1, z: -46.5}
 --- !u!1 &5958047748174687155
 GameObject:
   m_ObjectHideFlags: 0

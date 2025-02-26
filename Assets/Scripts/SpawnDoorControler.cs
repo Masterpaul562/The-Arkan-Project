@@ -54,9 +54,11 @@ public class SpawnDoorControler : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
+       
         if (other.CompareTag("Player"))
         {
             animator.SetTrigger("Closed");
         }
+        
     }
 }

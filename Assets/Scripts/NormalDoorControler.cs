@@ -30,9 +30,11 @@ public class NormalDoorControler : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
+         
         if (other.CompareTag("Player"))
         {
             animator.SetTrigger("Closed");
         }
+         
     }
 }
