@@ -142,5 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pouncer: {fileID: 1485848051211260603, guid: 4e00fdcbd0987bd4ab09a6b4a337498b, type: 3}
   lobber: {fileID: 5310621445166593066, guid: 1e6504cbb7c34fb48a7d11348ee39ccb, type: 3}
+  Heavy: {fileID: 8074159008792066062, guid: 3a303ac532e504407953c743701c3985, type: 3}
   player: {fileID: 3157533609315528770, guid: e1c3ea4238a25314ba485d9bca139757, type: 3}
+  doorControler: {fileID: 0}
+  shouldSpawn: 0
+  numOfEnemies: 0
   numOfMaxEnemies: 15

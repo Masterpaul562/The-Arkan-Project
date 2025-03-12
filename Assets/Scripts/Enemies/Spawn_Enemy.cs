@@ -7,6 +7,7 @@ public class Spawn_Enemy : MonoBehaviour
 
     [SerializeField] private GameObject pouncer;
     [SerializeField] private GameObject lobber;
+    [SerializeField] private GameObject Heavy;
     private GameObject selected; 
     [SerializeField]
     private Transform player;
@@ -17,6 +18,7 @@ public class Spawn_Enemy : MonoBehaviour
     private Transform spawn1;
     private Transform spawn2;
     private Transform spawn3;
+    
 
     void Start()
     {
