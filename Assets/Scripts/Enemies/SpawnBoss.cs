@@ -10,6 +10,8 @@ public class SpawnBoss : MonoBehaviour
    [SerializeField] private GameObject boss;
    [SerializeField] private GameObject door;
    [SerializeField] private Transform spawnLoc; 
+    [SerializeField] private Transform player; 
+   
    
 
 
@@ -21,7 +23,12 @@ public class SpawnBoss : MonoBehaviour
             hasSpawned = false; 
            var Boss =  Instantiate(boss, spawnLoc.position,spawnLoc.rotation);
            Boss.GetComponent<Move_Heavy>().door = door;
+           Boss.GetComponent<Move_Heavy>().player = player; 
+           Boss.GetComponent<Move_Heavy>().jumpLoc = new Transform[5];
            door.GetComponent<BossDoor>().roomDone = false; 
+           for (int i=0;i<5;i++) {
+Boss.GetComponent<Move_Heavy>().jumpLoc[i] = transform.GetChild(i);
+           }
         }
     }
 }

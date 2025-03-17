@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Move_Heavy : MonoBehaviour
 {
-   public Transform player;
-   private int health;
+   public Transform player;  
    public GameObject door; 
+   public Transform[] jumpLoc;
    [SerializeField] private float speed; 
    [SerializeField] private float Rotspeed;
+    private Transform currentLoc;
+    private int health;
 
     void Start()
     {
-        
+       currentLoc = jumpLoc[0];
     }
 
+public enum MovementState {
+    shooting,
+    rotating, 
+    jumping
+}
     // Update is called once per frame
     void Update()
     {

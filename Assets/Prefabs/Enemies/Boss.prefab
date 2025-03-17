@@ -122,5 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   door: {fileID: 0}
+  jumpLoc: []
   speed: 0
   Rotspeed: 0
