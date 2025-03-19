@@ -28,7 +28,6 @@ public class PlayerInter : MonoBehaviour
                 playerUI.UpdateText(interactable.promptMessage);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("yippee");
                     interactable.BaseInteract();                    
                 }              
             }

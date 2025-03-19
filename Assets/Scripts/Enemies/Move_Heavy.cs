@@ -5,16 +5,17 @@ using UnityEngine;
 public class Move_Heavy : MonoBehaviour
 {
    public Transform player;  
+   private Transform target; 
    public GameObject door; 
    public Transform[] jumpLoc;
-   [SerializeField] private float Rotspeed;
+   [SerializeField] private float rotSpeed;
     private Transform currentLoc;
     private int health;
 
     void Start()
     {
        currentLoc = jumpLoc[0];
-        Rotspeed = .5f;
+        rotSpeed = .5f;
     }
     public MovementState state;
     public enum MovementState
@@ -26,6 +27,7 @@ public class Move_Heavy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if(health < 0){
             Destroy(this.gameObject);
             door.GetComponent<BossDoor>().roomDone = true;
@@ -35,16 +37,28 @@ public class Move_Heavy : MonoBehaviour
 
         } else if (state == MovementState.rotating)
         {
-
+            target = player; 
+            Rotate();
         }else if (state == MovementState.jumping)
-        {
+        { 
+
+
+            SelectRandLoc();
+            Rotate();
 
         }
     }
     private void Rotate()
     {
-        Vector3 direction = (player.position - transform.position).normalized;
+        Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * Rotspeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
+    }
+    private void SelectRandLoc() {
+        
+        int i = Random.Range(0,5);
+        target = jumpLoc[i];              
+        currentLoc = target;
+        Debug.Log(transform);      
     }
 }
