@@ -229,5 +229,6 @@ MonoBehaviour:
   player: {fileID: 0}
   door: {fileID: 0}
   jumpLoc: []
-  speed: 0
-  Rotspeed: 0
+  rotSpeed: 0.5
+  angle: 50
+  state: 0
