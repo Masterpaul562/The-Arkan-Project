@@ -35,7 +35,7 @@ public class Move_Heavy : MonoBehaviour
         WaitForSeconds wait = new WaitForSeconds(timeToNextFire);
         while (true)
         {
-            yield return timeToNextFire;
+            yield return wait;
             canFire = true;
         }
     }
@@ -67,15 +67,17 @@ public class Move_Heavy : MonoBehaviour
         Statehandler();
         if (state == MovementState.shooting)
         {
-            float? angle = RotateSpawn();
-            if (angle != null)
-            {
+            target = player;
+            
+            Rotate();             
+            YRotateSpawn();
+           
                 if (canFire)
                 {
                     canFire = false;
-                    Fire();
+                    StartCoroutine(Fire());
                 }
-            }
+            
             
         } else if (state == MovementState.rotating)
         {
@@ -93,7 +95,7 @@ public class Move_Heavy : MonoBehaviour
         if (shouldShoot)
         {
             state = MovementState.shooting;
-            Debug.Log("Hooray");
+            
         }else
         {
             state = MovementState.rotating;
@@ -105,6 +107,9 @@ public class Move_Heavy : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
+    }
+    private void YRotateSpawn() {
+        bulletSpawn.transform.LookAt(target);
     }
     private void SelectRandLoc() {
         
@@ -122,48 +127,23 @@ public class Move_Heavy : MonoBehaviour
             
         } else
         {
-            Debug.Log("Yippee");
+            
             shouldShoot = false;   
         }
     }
-    float? RotateSpawn()
+    
+    
+    
+     private IEnumerator Fire()
     {
-        float? angle = CalculateAngle(true);
-
-        if (angle != null)
-        {
-
-            bulletSpawn.localEulerAngles = new Vector3(360f - (float)angle, 0f, 0f);
-        }
-        return angle;
-    }
-    float? CalculateAngle(bool low)
-    {
-        Vector3 targetDir = target.transform.position - bulletSpawn.position;
-        float y = targetDir.y;
-        targetDir.y = 0f;
-        float x = targetDir.magnitude;
-        float gravity = 9.8f;
-        float sSqr = bulletSpeed * bulletSpeed;
-        float underSqrRoot = (sSqr * sSqr) - gravity * (gravity * x * x + 2 * y * sSqr);
-
-        if (underSqrRoot >= 0f)
-        {
-            float root = Mathf.Sqrt(underSqrRoot);
-            float highAngle = sSqr * root;
-            float lowAngle = sSqr - root;
-            if (low)
-                return (Mathf.Atan2(lowAngle, gravity * x) * Mathf.Rad2Deg);
-            else
-                return (Mathf.Atan2(highAngle, gravity * x) * Mathf.Rad2Deg);
-        }
-        else
-            return null;
-    }
-    private void Fire()
-    {
+        WaitForSeconds wait = new WaitForSeconds(0.2f);
+        for (int i = 0; i<=3; i++) {
+        
+        yield return wait; 
         GameObject projectile = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-        projectile.GetComponent<Rigidbody>().velocity = bulletSpeed * bulletSpawn.forward;
+        projectile.GetComponent<Rigidbody>().useGravity = false; 
+        projectile.GetComponent<Rigidbody>().velocity = bulletSpeed * bulletSpawn.forward * 2;
+        }
     }
     
 }
