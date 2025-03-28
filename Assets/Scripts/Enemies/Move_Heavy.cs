@@ -13,12 +13,15 @@ public class Move_Heavy : MonoBehaviour
     private int health;
     public float angle;
     private bool shouldShoot;
+    private bool shouldjump;
     [SerializeField] private GameObject bullet;
     [SerializeField, Range(0, 30)] private float fireRate;
     [SerializeField, Range(0, 30)] private float bulletSpeed;
     [SerializeField] private Transform bulletSpawn;
     private bool canFire;
     Rigidbody rb;
+    private int timesFired = 0;
+    [SerializeField] private int shotsTillJump;
 
     void Start()
     {
@@ -56,15 +59,15 @@ public class Move_Heavy : MonoBehaviour
         rotating,
         jumping
     }
-    // Update is called once per frame
     void Update()
     {
-
+        Debug.Log ( timesFired);
         if (health < 0) {
             Destroy(this.gameObject);
             door.GetComponent<BossDoor>().roomDone = true;
         }
         Statehandler();
+        
         if (state == MovementState.shooting)
         {
             target = player;
@@ -75,6 +78,7 @@ public class Move_Heavy : MonoBehaviour
                 if (canFire)
                 {
                     canFire = false;
+                     timesFired++;
                     StartCoroutine(Fire());
                 }
             
@@ -85,14 +89,20 @@ public class Move_Heavy : MonoBehaviour
             Rotate();
         } else if (state == MovementState.jumping)
         {
-            SelectRandLoc();
-            Rotate();
+            StartCoroutine(JumpCheck());
 
+            if (shouldjump) {
+                shouldjump = false; 
+            StartCoroutine(Jump());
+            }
         }
     }
     private void Statehandler()
-    {
-        if (shouldShoot)
+    {   if (timesFired >= shotsTillJump){
+        state = MovementState.jumping; 
+
+    }else
+        if (shouldShoot && timesFired != shotsTillJump)
         {
             state = MovementState.shooting;
             
@@ -111,13 +121,7 @@ public class Move_Heavy : MonoBehaviour
     private void YRotateSpawn() {
         bulletSpawn.transform.LookAt(target);
     }
-    private void SelectRandLoc() {
-        
-        int i = Random.Range(0,5);
-        target = jumpLoc[i];              
-        currentLoc = target;
-        Debug.Log(transform);      
-    }
+    
     private void FieldOfViewCheck()
     {
         Vector3 dir = (target.position - transform.position).normalized;
@@ -143,7 +147,29 @@ public class Move_Heavy : MonoBehaviour
         GameObject projectile = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
         projectile.GetComponent<Rigidbody>().useGravity = false; 
         projectile.GetComponent<Rigidbody>().velocity = bulletSpeed * bulletSpawn.forward * 2;
+       
         }
     }
-    
+    private IEnumerator Jump() {
+        bool pickingLoc = true;
+        bool lookAt = true;
+        while (pickingLoc){
+        var i = Random.Range(0,5);
+        target = jumpLoc[i];
+        pickingLoc = false;
+        yield return null;
+        }      
+        while (lookAt) {
+        transform.LookAt(target);
+        lookAt = false;
+        yield return new WaitForSeconds(1);
+        }
+
+        rb.AddForce(transform.forward * 100,ForceMode.Impulse);
+        timesFired = 0;   
+    }
+    private IEnumerator JumpCheck() {
+        yield return new WaitForSeconds (3);
+        shouldjump = true;
+    }
 }
