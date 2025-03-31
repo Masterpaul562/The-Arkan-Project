@@ -13,7 +13,7 @@ public class Move_Heavy : MonoBehaviour
     private int health;
     public float angle;
     private bool shouldShoot;
-    private bool shouldjump;
+    private bool shouldJump;
     [SerializeField] private GameObject bullet;
     [SerializeField, Range(0, 30)] private float fireRate;
     [SerializeField, Range(0, 30)] private float bulletSpeed;
@@ -22,6 +22,10 @@ public class Move_Heavy : MonoBehaviour
     Rigidbody rb;
     private int timesFired = 0;
     [SerializeField] private int shotsTillJump;
+    private bool choosingTarget;
+    private bool facingWrongWay;
+   
+    
 
     void Start()
     {
@@ -61,7 +65,7 @@ public class Move_Heavy : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log ( timesFired);
+        
         if (health < 0) {
             Destroy(this.gameObject);
             door.GetComponent<BossDoor>().roomDone = true;
@@ -88,19 +92,20 @@ public class Move_Heavy : MonoBehaviour
             target = player;
             Rotate();
         } else if (state == MovementState.jumping)
-        {
-            StartCoroutine(JumpCheck());
-
-            if (shouldjump) {
-                shouldjump = false; 
+        {           
+            StartCoroutine(JumpCheck());           
+            if (shouldJump) {
+            shouldJump = false;       
+            facingWrongWay = true;
+            choosingTarget = true;       
             StartCoroutine(Jump());
             }
         }
     }
     private void Statehandler()
     {   if (timesFired >= shotsTillJump){
+     
         state = MovementState.jumping; 
-
     }else
         if (shouldShoot && timesFired != shotsTillJump)
         {
@@ -151,25 +156,25 @@ public class Move_Heavy : MonoBehaviour
         }
     }
     private IEnumerator Jump() {
-        bool pickingLoc = true;
-        bool lookAt = true;
-        while (pickingLoc){
-        var i = Random.Range(0,5);
-        target = jumpLoc[i];
-        pickingLoc = false;
-        yield return null;
-        }      
-        while (lookAt) {
-        transform.LookAt(target);
-        lookAt = false;
-        yield return new WaitForSeconds(1);
-        }
+        while (choosingTarget) {
+            var i = Random.Range(0,5);
+            target = jumpLoc[i];
+            if (target != currentLoc) {
+                choosingTarget = false;
+            }
+            yield return null; 
+        }   
+        while (facingWrongWay) {
+            Rotate();
+            
 
-        rb.AddForce(transform.forward * 100,ForceMode.Impulse);
-        timesFired = 0;   
+        }   
+        yield return new WaitForSeconds(3);
+
+
     }
     private IEnumerator JumpCheck() {
         yield return new WaitForSeconds (3);
-        shouldjump = true;
+        shouldJump = true;
     }
 }
