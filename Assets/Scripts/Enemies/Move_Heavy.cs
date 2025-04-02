@@ -165,8 +165,7 @@ public class Move_Heavy : MonoBehaviour
             yield return null; 
         }   
         while (facingWrongWay) {
-            Rotate();
-            
+            Rotate();          
 
         }   
         yield return new WaitForSeconds(3);
